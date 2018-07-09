@@ -65,7 +65,7 @@ Emigration and Economy
 
 <h2>
 
-An analysis of Emigration and Economy <br>Click on any button or country to begin!
+An Analysis of Emigration and Economy. <br>Click on any button to begin!
 
 </h2>
 
@@ -147,7 +147,7 @@ var gdpMapScale = d3.scaleThreshold()
 
 var projection = d3.geoNaturalEarth() // converting coordinates to natural world map
     .scale(190)
-    .translate([width / 2, height / 2]) // this puts the map in the middle of the svg
+    .translate([width / 2, height / 2]); // this puts the map in the middle of the svg
 
 var path = d3.geoPath()
     .projection(projection); //plotting the coordinates as country boundaries on the natural world map
@@ -191,7 +191,7 @@ var emigrant_tip = d3.tip()
 			.html(function(d) {
               return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + 
 			  "<strong>Emmigrants: </strong><span class='details'>" + format(d.population/1000000) +"<strong> Million</strong><br></span>";
-            })
+            });
 svg.call(emigrant_tip);
 	
 	
@@ -280,7 +280,7 @@ var remittance_tip = d3.tip()
             .html(function(d) {
               return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + 
 			  "<strong>Remittance Received: </strong><span class='details'>" + format(d.remittance2017/1000)+"<strong> Billion USD</strong><br></span>";
-            })
+            });
 			
 svg.call(remittance_tip);
 	
@@ -345,7 +345,7 @@ var gdp_tip = d3.tip()
             .html(function(d) {
               return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + 
 			  "<strong>Latest GDP: </strong><span class='details'>" + format(d.gdp2016/1000000000000) +"<strong> Trillion USD</strong><br></span>";
-            })
+            });
 
 svg.call(gdp_tip);
 
@@ -387,7 +387,8 @@ function ready(error, data_map, migration) {
           })
 			.on('mouseover',function(d){
           gdp_tip.show(d);
-          d3.select(this)
+          
+		  d3.select(this)
             .style("opacity", 1)
             .style("stroke","white")
             .style("stroke-width",3);
@@ -456,7 +457,7 @@ var barchart_tip = d3.tip()
             .offset([-10, 0])
             .html(function(d) {
               return "<strong>Country: </strong>" + d.country +"<br><strong>Year: </strong>" + d.year + "<br><strong> Remittance: $USD </strong>" + format(d.value) + "<strong> Million</strong>";
-            })
+            });
 			
 svg2.call(barchart_tip);
   
@@ -491,7 +492,8 @@ svg2.call(barchart_tip);
             .style("stroke","white")
             .style("stroke-width",0.3);
         });
-			  
+		
+					  
 // add the x Axis
 svg2.append("g")
       .attr("transform", "translate(0," + height + ")")
@@ -533,8 +535,11 @@ var margin3 = {top: 20, right: 20, bottom: 30, left: 40},
 
 // set the ranges 
 
-var x2 = d3.scaleTime().range([0, width]); // Year as a continuous variable
+var x2 = d3.scaleLinear().range([0, width]); 
 var y2 = d3.scaleLinear().range([height, 0]);
+
+var parseTime = d3.timeParse("%Y");
+d.year = parseTime(d.year);
 
 // Scale the range of the data
 x2.domain(d3.extent(data, function(d) { d.year = +d.year; return d.year; }));
@@ -564,15 +569,13 @@ var svg3 = d3.select("#lineChart").append("svg")
       .attr("d", valueline)
 	  .attr("fill","none")
 	  .attr("stroke","green")
-	  .attr("stroke-width","3")
-	  .exit()
-	  .remove();
+	  .attr("stroke-width","3");
 		
   // Add the X Axis
 svg3.append("g")
       .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x2)
-	  .tickFormat(d.year)); // tickFormat should ideally return human readable date values on the X Axis. This is not working for me.
+      .call(d3.axisBottom(x2));
+	 
 	  
 svg3.append("text")    
     .attr("y",-30)
