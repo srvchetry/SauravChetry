@@ -535,14 +535,14 @@ var margin3 = {top: 20, right: 20, bottom: 30, left: 40},
 
 // set the ranges 
 
-var x2 = d3.scaleLinear().range([0, width]); 
+var x2 = d3.scaleLinear().range([0, width]); // Notice that scaleLinear is used here. Ideally the function used should be scaleTime(), but here the scaleTime() throws an error.
 var y2 = d3.scaleLinear().range([height, 0]);
 
 //var parseTime = d3.timeParse("%Y");
 //d.year = parseTime(d.year);
 
 // Scale the range of the data
-x2.domain(d3.extent(data, function(d) { d.year = +d.year; return d.year; }));
+x2.domain(d3.extent(data, function(d) {return d.year; }));
 y2.domain([0, d3.max(data, function(d) { return d.value2; })]);
 	  
  // define the line
@@ -574,7 +574,8 @@ var svg3 = d3.select("#lineChart").append("svg")
   // Add the X Axis
 svg3.append("g")
       .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x2));
+      .call(d3.axisBottom(x2)
+	  .tickFormat(d3.format("d")));
 	 
 	  
 svg3.append("text")    
