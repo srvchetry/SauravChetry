@@ -535,11 +535,9 @@ var margin3 = {top: 20, right: 20, bottom: 30, left: 40},
 
 // set the ranges 
 
-var x2 = d3.scaleLinear().range([0, width]); // Notice that scaleLinear is used here. Ideally the function used should be scaleTime(), but here the scaleTime() throws an error.
+var x2 = d3.scaleTime().range([0, width]); 
 var y2 = d3.scaleLinear().range([height, 0]);
 
-//var parseTime = d3.timeParse("%Y");
-//d.year = parseTime(d.year);
 
 // Scale the range of the data
 x2.domain(d3.extent(data, function(d) {return d.year; }));
