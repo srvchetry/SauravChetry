@@ -123,6 +123,26 @@ var svg = d3.select("body").append("svg")
 	.append("g")
 		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 		
+// color scale definition. uses the built in function in the included library above
+
+var emigrantMapColor = d3.schemeBlues[7];
+emigrantMapColor.unshift("white") // precede with a white space
+var emigrantMapScale = d3.scaleThreshold()
+    .domain([100, 1000, 10000, 100000, 1000000, 10000000, 16000000])
+    .range(emigrantMapColor);
+	
+var remittanceMapColor = d3.schemeReds[6];
+remittanceMapColor.unshift("white")
+var remittanceMapScale = d3.scaleThreshold()
+    .domain([0,1000,10000,25000,50000,70000])
+    .range(remittanceMapColor);
+	
+var gdpMapColor = d3.schemeOranges[9];
+gdpMapColor.unshift("white")
+var gdpMapScale = d3.scaleThreshold()
+    .domain([100000, 10000000, 100000000, 1000000000, 100000000000, 1000000000000, 10000000000000,20000000000000,30000000000000])
+    .range(gdpMapColor);
+		
 // Coordinates to Map
 
 var projection = d3.geoNaturalEarth() // converting coordinates to natural world map
@@ -145,13 +165,7 @@ function defaultFunction(){
 
 svg.selectAll("*").remove(); // remove and reload the map when navigating between functions, this is to avoid any overwriting
 
-// color scale definition. uses the built in function in the included library above
 
-var emigrantMapColor = d3.schemeBlues[7];
-emigrantMapColor.unshift("white") // precede with a white space
-var emigrantMapScale = d3.scaleThreshold()
-    .domain([100, 1000, 10000, 100000, 1000000, 10000000, 16000000])
-    .range(emigrantMapColor);
 
 //legend for the legend map.
 
@@ -236,11 +250,7 @@ function remittanceData() {
 svg.selectAll("*").remove();
 //d3.select("body").select("svg").remove();
 
-var remittanceMapColor = d3.schemeReds[6];
-remittanceMapColor.unshift("white")
-var remittanceMapScale = d3.scaleThreshold()
-    .domain([0,1000,10000,25000,50000,70000])
-    .range(remittanceMapColor);
+
 
 d3.queue()
     .defer(d3.json,"https://enjalot.github.io/wwsd/data/world/world-110m.geojson")
@@ -320,11 +330,7 @@ function gdpData() {
 
 svg.selectAll("*").remove(); //clears body on each function call
 
-var gdpMapColor = d3.schemeOranges[9];
-gdpMapColor.unshift("white")
-var gdpMapScale = d3.scaleThreshold()
-    .domain([100000, 10000000, 100000000, 1000000000, 100000000000, 1000000000000, 10000000000000,20000000000000,30000000000000])
-    .range(gdpMapColor);
+
 	
 
 d3.queue()
