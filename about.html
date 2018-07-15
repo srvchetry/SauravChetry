@@ -1,0 +1,45 @@
+<html>
+<title>
+About the Visualization
+</title>
+<p>
+<u><strong>About this Visualization</strong></u><br><br>	
+
+This project is a D3JS version of my <a href = "https://public.tableau.com/profile/saurav7394#!/vizhome/ImmigrationandRemittancesoverviewofthemostimmigratingnationsv2/Dashboard?publish=yes" target="_blank"> Midterm Project</a>. 
+This narrative visualization is inspired from the Drill Down Narrative Visualization <a href = "https://archive.nytimes.com/www.nytimes.com/interactive/2008/10/11/business/20081011_BEAR_MARKETS.html?utm_medium=twitter&utm_source=twitterfeed" target="_blank"> How This Bear Market Compares </a><br><br>
+
+<br><u><b> Hybrid Structure:</u> Drill Down Story</b><br><br>
+The narrative visualization loads the emigration 2017 chloropleth as the default.The user can move the mouse over the countries to
+find the emigration details about them. On clicking any country of interest, the bar chart and line chart showing the country's remittance details open up. On mouseover on the bar chart further displays details for the country for the chosen year.
+The other maps can be launched on clicking the buttons and they have the same onclick functionality.<u>The drill down functionality is thus acheived with the combination of interactive chloropleth, mouse events and interactive charts.</u><br>
+
+<br><u><b> Scenes:</b></u><br><br>
+
+Interactive Chloropleth, Interactive bar chart and a Non Interactive line chart comprise all the scenes. The opening scene is a world map( chloropleth ) which is iteractive on mouse actions.
+The click event open the second scene which consists of the bar chart and the line chart<br>
+
+<br><u><b> Annotations and Triggers:</b></u><br><br>
+
+The visualization opens with a message about what the visualization is and prompts the user to take action. The user can click on the visible buttons or hover over the map and click on any country to start the drill down.
+Each cloropleth have the color legend which helps understand the map colors. On mouseover, the color of the coutry changes to gray and also triggers a tooltip showing the details of the country. On clicing the country launches the bar chart and line chart
+for that country's data. On mouseover on the bar chart would again trigger the tooltip showing further details about the country<br>
+
+<br><u><b> User Events and Parameters:</b></u><br><br>
+
+User can click on any buttons to launch a different map. User can move the mouse over the map, which will trigger the tooltip for the country. On mouseover on a country, the color of the country changes to gray and the tooltip displays the country name and value of that country based on which map the user is seeing.
+Use can click on any country on any map which then passes the country name to the bar and line charts. Based on the country name, the charts show data from a different file. For countries which do not have any data, the charts return empty.<br>
+
+<br><u><b> Source Code:</b></u><br><br>
+Just right click on your browser and check my code. All libraries used are from d3js.org. All code is just HTML and D3JS<br>
+
+<br><br><u><b>Conclusion:</b></u><br><br> Remittances contribute to the GDP of the countries. Some countries( for e.g. Nepal ) have a third of their GDP from inward remittances.
+Emigration is a brain-drain phenomenon for the country, but that country also gets economic benefits from it.
+
+<br><br>DataSource: <a href= "https://www.knomad.org/" target="_blank">https://www.knomad.org/</a> 
+
+</p>
+<form action="index.html">
+    <input type="submit" value="Back to the Visualization" />
+</form>
+
+</html>
