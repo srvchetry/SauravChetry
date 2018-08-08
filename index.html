@@ -284,7 +284,7 @@ svg.selectAll("*").remove();
 
 
 d3.queue()
-    .defer(d3.json,"https://enjalot.github.io/wwsd/data/world/world-110m.geojson")
+    .defer(d3.json,"world.json")
 	.defer(d3.csv, "https://rawgit.com/srvchetry/CSDDVSauravChetry/master/bilateralmigrationmatrix20170_Apr2018.csv",	function(d){ data.set(d.code,+d.remittance2017)})		
    .await(ready);
 	
@@ -388,7 +388,7 @@ svg.selectAll("*").remove(); //clears body on each function call
 	
 
 d3.queue()
-    .defer(d3.json,"https://enjalot.github.io/wwsd/data/world/world-110m.geojson") // publicly available geojson API for the map co-ordinates
+    .defer(d3.json,"world.json") // publicly available geojson API for the map co-ordinates
 	.defer(d3.csv, "https://rawgit.com/srvchetry/CSDDVSauravChetry/master/bilateralmigrationmatrix20170_Apr2018.csv",	function(d){ data.set(d.code,+d.gdp2016);
 	console.log(data.set(d.code,+d.gdp2016));})		
    .await(ready);
