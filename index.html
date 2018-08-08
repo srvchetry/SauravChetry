@@ -221,7 +221,7 @@ g_emi.call(d3.axisBottom(x_emi)
 
 //load the data from json api and local csv
 d3.queue()
-    .defer(d3.json,"https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json")
+    .defer(d3.json,"world.json")
 	.defer(d3.csv, "https://rawgit.com/srvchetry/CSDDVSauravChetry/master/bilateralmigrationmatrix20170_Apr2018.csv",	function(d){ data.set(d.code,+d.population)})	//set country code and emigrant population from CSV	
    .await(ready); // await till data from both sources are loaded.
 	
