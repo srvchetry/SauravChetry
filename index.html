@@ -232,7 +232,7 @@ g_emi.call(d3.axisBottom(x_emi)
 //load the data from json api and local csv
 d3.queue()
     .defer(d3.json,"world.json")
-	.defer(d3.csv, "https://rawgit.com/srvchetry/CSDDVSauravChetry/master/bilateralmigrationmatrix20170_Apr2018.csv",	function(d){ data.set(d.code,+d.population)})	//set country code and emigrant population from CSV	
+	.defer(d3.csv, "bilateralmigrationmatrix20170_Apr2018.csv",	function(d){ data.set(d.code,+d.population)})	//set country code and emigrant population from CSV	
    .await(ready); // await till data from both sources are loaded.
 	
 function ready(error, data_map, migration) {
@@ -295,7 +295,7 @@ svg.selectAll("*").remove();
 
 d3.queue()
     .defer(d3.json,"world.json")
-	.defer(d3.csv, "https://rawgit.com/srvchetry/CSDDVSauravChetry/master/bilateralmigrationmatrix20170_Apr2018.csv",	function(d){ data.set(d.code,+d.remittance2017)})		
+	.defer(d3.csv, "bilateralmigrationmatrix20170_Apr2018.csv",	function(d){ data.set(d.code,+d.remittance2017)})		
    .await(ready);
 	
 //legend for the remittance map.
@@ -399,7 +399,7 @@ svg.selectAll("*").remove(); //clears body on each function call
 
 d3.queue()
     .defer(d3.json,"world.json") // publicly available geojson API for the map co-ordinates
-	.defer(d3.csv, "https://rawgit.com/srvchetry/CSDDVSauravChetry/master/bilateralmigrationmatrix20170_Apr2018.csv",	function(d){ data.set(d.code,+d.gdp2016);
+	.defer(d3.csv, "bilateralmigrationmatrix20170_Apr2018.csv",	function(d){ data.set(d.code,+d.gdp2016);
 	console.log(data.set(d.code,+d.gdp2016));})		
    .await(ready);
 
@@ -507,7 +507,7 @@ var country = d.properties.name;
 
 //loading and selecting data for the barchart
 
-d3.csv("https://rawgit.com/srvchetry/CSDDVSauravChetry/master/countryremittance.csv", function(d) {
+d3.csv("countryremittance.csv", function(d) {
      	
   if(d.country == country) return d; // return the dataset for only the country clicked on the map
   
